@@ -15,11 +15,11 @@
     t.src=v;s=b.getElementsByTagName(e)[0];
     s.parentNode.insertBefore(t,s)}(window, document,'script',
     'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', '1395915645860602');
+    fbq('init', '2179389726007987');
     fbq('track', 'PageView');
     </script>
     <noscript><img height="1" width="1" style="display:none"
-    src="https://www.facebook.com/tr?id=1395915645860602&ev=PageView&noscript=1"
+    src="https://www.facebook.com/tr?id=2179389726007987&ev=PageView&noscript=1"
     /></noscript>
     <!-- End Meta Pixel Code -->
 
@@ -315,7 +315,7 @@
         </div>
 
         <!-- Main CTA Button -->
-        <a href="https://t.me/+zcazL2r0BUdiYWVh" target="_blank" class="btn-telegram tg-link">
+        <a href="https://t.me/+EcxLZwKyaIlkNDY1" target="_blank" class="btn-telegram tg-link">
             <i class="fa-brands fa-telegram" style="font-size: 24px;"></i>
             JOIN TELEGRAM CHANNEL
         </a>
@@ -368,7 +368,7 @@
 
     <!-- Sticky Bottom Bar -->
     <div class="sticky-bar">
-        <a href="https://t.me/+zcazL2r0BUdiYWVh" target="_blank" class="sticky-btn tg-link">
+        <a href="https://t.me/+EcxLZwKyaIlkNDY1" target="_blank" class="sticky-btn tg-link">
             <i class="fa-brands fa-telegram"></i> JOIN NOW FOR FREE
         </a>
     </div>
@@ -389,11 +389,16 @@
             timeLeft--;
         }, 1000);
 
-        // Track Telegram Clicks in Meta Pixel
+        // Track Telegram Clicks in Meta Pixel (Anti-Duplicate / Single Count Feature)
         document.querySelectorAll('.tg-link').forEach(button => {
             button.addEventListener('click', function() {
                 if (typeof fbq !== 'undefined') {
-                    fbq('track', 'Subscribe');
+                    // Check if 'Subscribe' event has already been tracked for this session
+                    if (!sessionStorage.getItem('telegram_subscribed_tracked')) {
+                        fbq('track', 'Subscribe');
+                        // Set flag so it won't fire again for the same user in this session
+                        sessionStorage.setItem('telegram_subscribed_tracked', 'true');
+                    }
                 }
             });
         });
